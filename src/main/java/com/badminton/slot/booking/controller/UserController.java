@@ -1,8 +1,6 @@
 package com.badminton.slot.booking.controller;
 
 import com.badminton.slot.booking.exchanges.UserUpdateRequest;
-import com.badminton.slot.booking.model.Users;
-import com.badminton.slot.booking.repository.UserRepository;
 import com.badminton.slot.booking.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
