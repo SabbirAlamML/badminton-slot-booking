@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookingRequest {
-    private String slotId;
-    private String date;
+  private String slotId;
+  private String date;
 }

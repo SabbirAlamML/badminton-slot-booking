@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SlotRepository extends JpaRepository<Slot, Long> {
-    // Additional query methods if needed
+  // Additional query methods if needed
 }

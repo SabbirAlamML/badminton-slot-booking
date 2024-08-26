@@ -9,20 +9,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
-    private final PasswordEncoder passwordEncoder;
+  private final PasswordEncoder passwordEncoder;
 
-    public MyUserDetailsService(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // For simplicity, we're returning a hardcoded user.
-        // In a real-world application, replace this with looking up the user in your database.
-        return User.withUsername("user")
-                .password(passwordEncoder.encode("password"))
-                .roles("USER").build();
-    }
+  public MyUserDetailsService(PasswordEncoder passwordEncoder) {
+    this.passwordEncoder = passwordEncoder;
+  }
 
-
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    // For simplicity, we're returning a hardcoded user.
+    // In a real-world application, replace this with looking up the user in your database.
+    return User.withUsername("user")
+        .password(passwordEncoder.encode("password"))
+        .roles("USER")
+        .build();
+  }
 }
-

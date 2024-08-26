@@ -16,48 +16,41 @@ import java.util.Arrays;
 
 @Configuration
 public class SecurityConfig {
-    @Autowired
-    private MyUserDetailsService myUserDetailsService;
+  @Autowired private MyUserDetailsService myUserDetailsService;
 
-/*    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests(authorize -> authorize
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/user/**").hasRole("USER")
-                        .requestMatchers("/public/**", "/login", "/register").permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/profile", true)
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll()
-                );
-        return http.build();
-    }*/
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin();
+  /*    @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+      http
+              .authorizeRequests(authorize -> authorize
+                      .requestMatchers("/admin/**").hasRole("ADMIN")
+                      .requestMatchers("/user/**").hasRole("USER")
+                      .requestMatchers("/public/**", "/login", "/register").permitAll()
+                      .anyRequest().authenticated())
+              .formLogin(formLogin -> formLogin
+                      .loginPage("/login")
+                      .defaultSuccessUrl("/profile", true)
+                      .permitAll()
+              )
+              .logout(logout -> logout
+                      .logoutUrl("/logout")
+                      .logoutSuccessUrl("/login?logout")
+                      .permitAll()
+              );
+      return http.build();
+  }*/
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http.authorizeRequests().anyRequest().authenticated().and().formLogin();
+    return http.build();
+  }
 
-        return http.build();
-    }
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-    }
+  @Autowired
+  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(myUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+  }
 
-
-    @Bean
-    public AuthenticationManager authenticationManager() throws Exception {
-        return new ProviderManager(Arrays.asList(new DaoAuthenticationProvider()));
-    }
+  @Bean
+  public AuthenticationManager authenticationManager() throws Exception {
+    return new ProviderManager(Arrays.asList(new DaoAuthenticationProvider()));
+  }
 }
-

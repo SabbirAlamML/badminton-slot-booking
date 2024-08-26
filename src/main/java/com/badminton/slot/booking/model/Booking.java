@@ -6,17 +6,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Booking {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long slotId;
-    private Long userId;
-    private String date;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  private Long slotId;
+  private Long userId;
+  private String date;
 }
